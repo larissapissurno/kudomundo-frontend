@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kudo Wall</title>
+
+    <link rel="stylesheet" href="commons/commons.css">
+    <link rel="stylesheet" href="commons/form.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
+    <script src="commons/md5.js"></script>
+    <script src="commons/tenant.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <nav class="header-form">
+            <h3>"{{titles[aba-1]}}"</h3>
+        </nav>
+
+        <div class="abas">
+        <ul>
+            <li :class="`aba ${aba > 1 ? 'passed' : ''}`" @click="goTo(1)">
+                <input id="aba1" type="radio" name="aba" value="1" disabled v-model="aba" />
+                <label for="aba1">
+                    <i></i>
+                    <span>Quem?</span>
+                </label>
+            </li>
+            <li :class="`aba ${aba > 2 ? 'passed' : ''}`" @click="goTo(2)">
+                <input id="aba2" type="radio" name="aba" value="2" disabled v-model="aba" />
+                <label for="aba2">
+                    <i></i>
+                    <span>Qual?</span>
+                </label>
+            </li>
+            <li class="aba">
+                <input id="aba3" type="radio" name="aba" value="3" disabled v-model="aba" />
+                <label for="aba3">
+                    <i></i>
+                    <span>O quê?</span>
+                </label>
+            </li>
+        </ul>
+        </div>
+
+        <section class="content">
+            <div v-if="aba === 1">
+                <label class="question-label">Escolha!</label>
+                        
+                <div class="question" v-if="aba === 1">
+                    <div v-for="(memberO, index) in members" :key="index" class="member" @click="setMember(memberO)">
+                        <img :src="`https://www.gravatar.com/avatar/${MD5(memberO.email)}?s=60`" class="member-image"></img>
+
+                        <label class="member-name">
+                            {{ memberO.name }}
+                        </label>
+                    </div>            
+                </div>
+            </div>
+        
+        
+            <div v-if="aba === 2">
+                <label class="question-label">Escolha!</label>
+                <div class="question">
+                    <div v-for="(meme, index) in memes" :key="index" class="meme" @click="setMeme(meme)">
+                        <img :src="`private/${team}/memes/${meme.image}`"></img>
+                        <label :class="getColor(meme.image)">{{ meme.title }}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="description" v-if="aba === 3">
+                <label>Deixe o seu recado!</label>
+                <textarea v-model="description" rows="10" required></textarea> 
+                <div class="action">
+                    <button type="button" @click="confirm" class="button">+ Enviar</button>
+                </div>           
+            </div>
+    
+        </section>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                members: [],
+                memes: [],
+                meme: null,
+                description: '',
+                member: '',
+                aba: 1,
+                titles: [
+                    "melhor um kudo na wall, do que dois voando",
+                    "pimenta no kudo dos outros, é refresco",
+                    "O que o coração não diz, o kudo não sente"
+                ]
+            },
+            methods: {
+                loadJson(name) {
+                    fetch(`private/${team}/${name}.json`)
+                    .then(response => response.json())
+                    .then(myJson => this.$data[name] = myJson);            
+                },
+                setMember(member) {
+                    this.$data.member = member.name;
+                    this.$data.aba = 2;
+                },
+                setMeme(memeNew) {
+                    this.$data.meme = memeNew;
+                    this.$data.aba = 3;
+                },
+                goTo(aba) {
+                    if (this.$data.aba > aba) {
+                        this.$data.aba = aba;
+                    }
+                },
+                confirm() {
+                    const card = {
+                        member: this.$data.member,
+                        description: this.$data.description,
+                        meme: this.$data.meme.image,
+                        title: this.$data.meme.title
+                    }
+
+                    axios.post(`${uri}/card/${team}`, card)
+                    .then(response => {
+                        alert('Seu Kudo é Meu agora! Ta salvo.');
+                        window.location = '/board.html';
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        alert('Vish, deu ruim');
+                    });
+                },
+                getColor(memeImage) {
+                    return memeImage.replace('.png', '');
+                }
+            },
+            created() {
+                this.loadJson("memes");
+                this.loadJson("members");
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,226 @@
+#app {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+body {
+    background-color: #1f2044;
+    align-items: center;
+    color: #1f2044;
+}
+
+.header-form {
+    background-color: #3a3c6e;
+    color: white;
+    padding: 10px;
+    margin: 0;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.content {
+    background-color: white;
+    padding: 60px;
+    padding-top: 30px;
+}
+
+.question {
+    grid-template-rows: auto 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    display: grid;
+    grid-gap: 24px;
+    width: calc(100% - 46px);
+}
+
+.member {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    max-width: 100px;
+    text-align: center;
+    padding: 7px;
+    min-height: 130px;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+
+.member:hover {
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.member-image {
+    border-radius: 40px;
+    margin: 0 auto;
+}
+
+.member-name {
+    font-weight: bold;
+    align-content: center;
+}
+
+.abas {
+    text-align: center;
+    position: relative;
+    background-color: white;
+    margin: 0;
+}
+
+.abas ul {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    list-style-type: none;
+    margin: 0;
+    padding: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+
+.abas:before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 0;
+    border-top: 8px solid #1f2044;
+    background: black;
+    width: 100%;
+    transform: translateY(-50%);
+}
+
+input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.aba input {
+    width: 30px;
+    height: 30px;
+}
+
+.aba input{
+    display: none;
+}
+
+.aba input + label{
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-gap: 7px;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #ccc;
+}
+
+.aba.passed input + label{
+    color: #1f2044;
+}
+
+.aba input:checked + label{
+    color: #fd6b09;
+}
+
+.aba.passed input + label i {
+    background-image: url('radio-button-checked.svg');
+    cursor: pointer;
+}
+
+.aba.passed input + label {
+    cursor: pointer;
+}
+
+.aba input + label i{
+    z-index: 1;
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    background-size: 30px;
+    background-image: url('radio-button-uncheck.svg');
+}
+.aba input:checked + label i{
+    background-image: url('radio-button.svg');
+}
+.aba label i{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background: #fff url('http://kuzroman.com/images/jswiddler/circle.svg') no-repeat 50%;
+    background-size: 12px;
+    position: relative;
+    top: 1px;
+    left: -2px;
+}
+
+.meme {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    min-height: 80px;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+
+.meme img {
+    margin: 7px auto;
+    max-width: 100%;
+    max-height: 90px;
+}
+
+.meme label {
+    border-radius: 0 0 7px 7px;
+    height: 60px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.meme:hover {
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+.description {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-gap: 15px;
+    width: 100%;
+}
+
+.question-label, .description label {
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: 14pt;
+}
+
+.question-label {
+    margin-bottom: 15px;
+    float: left;
+}
+
+textarea {
+    resize: none;
+    font-family: MontSerrat;
+    font-size: 12pt;
+    padding: 10px;
+}
+
+.action {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media(max-width: 760px) {
+    .question {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media(max-width: 600px) {
+    .question {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
