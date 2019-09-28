@@ -190,7 +190,7 @@ input[type="radio"] {
     width: 100%;
 }
 
-.question-label, .description label {
+.ql, .question-label, .description label {
     text-transform: uppercase;
     font-weight: bolder;
     font-size: 14pt;
@@ -213,6 +213,11 @@ textarea {
     justify-content: flex-end;
 }
 
+small {
+    font-size: 10pt;
+    font-weight: normal;
+}
+
 @media(max-width: 760px) {
     .question {
         grid-template-columns: repeat(3, 1fr);
@@ -222,5 +227,62 @@ textarea {
 @media(max-width: 600px) {
     .question {
         grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.card {
+    margin: 0 auto;
+    background-color: #ddd;
+    width: 100%;
+    border-radius: 5px;
+    max-width: 450px;
+    margin-top: 15px;
+}
+
+.card-content {
+    display: grid;
+    grid-template-areas: 
+    'img member'
+    'img message';
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto 1fr;
+}
+
+.card-member {
+    grid-area: member;
+    text-align: left;
+    padding-top: 5px;
+}
+
+.card-message {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center
+}
+
+.card-meme {
+    grid-area: img;
+    max-height: 150px;
+    max-width: 150px;
+    padding: 10px;
+}
+
+.card-title {
+    background-color: #f43110;
+    font-size: 18pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    padding: 25px;
+    border-radius: 5px 5px 0 0;
+}
+
+@media(min-width: 1220px) {
+    .back-button {
+        position: fixed;
+        top: 15px;
+        left: calc(calc(50vw - 350px) / 2 - 100px); 
     }
 }

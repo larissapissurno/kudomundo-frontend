@@ -38,8 +38,14 @@ h4 {
     font-weight: bold;
     border-radius: 40px;
     padding: 15px;
-    margin-right: 45px;
     font-size: 14px;
+    cursor: pointer;
+}
+
+.button:disabled, .button:hover:disabled {
+    background-color: #c9c9c9;
+    color: white;
+    border-color: white;
 }
 
 .button:hover {
