@@ -78,6 +78,30 @@ html, body {
 }
 
 .actions {
-    padding-left: 20px;
-    padding-right: 20px;
+    margin-left: 25px;
+    margin-right: 35px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+}
+
+.selo-verde {
+    height: 50px;
+    display: grid;
+    grid-template-columns: 50px auto;
+    background-color: #72ee87;
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #00530e;
+}
+
+.selo-verde > i {
+    background-image: url(./seal-simple.svg);
+    background-repeat: no-repeat;
+}
+
+.selo-verde > label {
+    margin-top: 15px;
 }

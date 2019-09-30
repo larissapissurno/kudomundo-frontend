@@ -22,7 +22,12 @@
             <h4>Semana {{weekOfYear}}/{{year}} ({{startWeek}} até {{endWeek}})</h4>
         </nav>
         <div class="actions">
-            <a class="button pull-right" href="/cadastrar.html" title="Libera ai seu Kudo, vai.">+ Enviar</a>
+            <div class="selo-verde">
+                <i></i>
+                <label>{{sustainable.papers}} Folhas A4 Salvas</label>
+            </div>
+            <div></div>
+            <a class="button" href="/cadastrar.html" title="Libera ai seu Kudo, vai.">+ Enviar</a>
         </div>
         <div class="cards">
             <div v-if="cards.length === 0" class="card">
@@ -61,7 +66,8 @@
         const app = new Vue({
             el: '#app',
             data: {
-                cards:[]
+                cards:[],
+                sustainable: { papers: 0, cards: 0 }
             },
             methods: {
                 loadBoard() {
@@ -69,12 +75,18 @@
                     .then(response => response.json())
                     .then(myJson => this.$data.cards = myJson.sort((a, b) => moment(b.timestamp).diff(moment(a.timestamp))));
                 },
+                loadSustainable() {
+                    fetch(`${uri}/sustainable`)
+                    .then(response => response.json())
+                    .then(json => this.$data.sustainable = json)
+                },
                 getColor(meme) {
                     return meme.replace('.png', '');
                 }
             },
             created() {
                 this.loadBoard();
+                this.loadSustainable();
             }
         });
     </script>
