@@ -9,6 +9,67 @@ body {
     color: #1f2044;
 }
 
+.abas {
+    padding-top: 15px;
+    margin: 0;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+    list-style-type: none;            
+}
+
+.abas > li {
+    position: relative;
+    float: left;
+    width: 25%;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.abas > li:before {
+    content: "";
+    display: block;
+    color: #1f2044;
+    background-color: #1f2044;
+    border: 5px solid #ccc;
+    text-align: center;
+    width: 1.7em;
+    height: 1.7em;
+    line-height: 2em;
+    border-radius: 2em;
+    position: relative;
+    left: 50%;
+    margin-bottom: 1em;
+    margin-left: -1em;
+    z-index: 1;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.abas > .current ~ li:before {
+    background-color: #ccc;
+    color: #ccc;
+    border-color: #ccc;
+    cursor: initial;
+}
+
+.abas li + li:after {
+    content: "";
+    display: block;
+    width: 100%;
+    background-color: #1f2044;
+    height: 12px;
+    position: absolute;
+    left: -50%;
+    top: 15px;
+    z-index: 0;
+}
+
+.abas > .current ~ li:after {
+    background-color: #ccc;
+}
+
 .header-form {
     background-color: #3a3c6e;
     color: white;
@@ -29,14 +90,13 @@ body {
     grid-template-rows: auto 1fr;
     grid-template-columns: repeat(4, 1fr);
     display: grid;
-    grid-gap: 24px;
-    width: calc(100% - 46px);
+    grid-gap: 20px;
+    width: 100%;
 }
 
 .member {
     border: 1px solid #ccc;
     border-radius: 10px;
-    max-width: 100px;
     text-align: center;
     padding: 7px;
     min-height: 130px;
@@ -59,99 +119,6 @@ body {
     align-content: center;
 }
 
-.abas {
-    text-align: center;
-    position: relative;
-    background-color: white;
-    margin: 0;
-}
-
-.abas ul {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    list-style-type: none;
-    margin: 0;
-    padding: 15px;
-    padding-left: 50px;
-    padding-right: 50px;
-}
-
-
-.abas:before {
-    content: '';
-    position: absolute;
-    top: 30px;
-    left: 0;
-    border-top: 8px solid #1f2044;
-    background: black;
-    width: 100%;
-    transform: translateY(-50%);
-}
-
-input[type="radio"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-.aba input {
-    width: 30px;
-    height: 30px;
-}
-
-.aba input{
-    display: none;
-}
-
-.aba input + label{
-    display: grid;
-    grid-template-rows: 1fr auto;
-    grid-gap: 7px;
-    text-transform: uppercase;
-    font-weight: 900;
-    color: #ccc;
-}
-
-.aba.passed input + label{
-    color: #1f2044;
-}
-
-.aba input:checked + label{
-    color: #fd6b09;
-}
-
-.aba.passed input + label i {
-    background-image: url('radio-button-checked.svg');
-    cursor: pointer;
-}
-
-.aba.passed input + label {
-    cursor: pointer;
-}
-
-.aba input + label i{
-    z-index: 1;
-    margin: 0 auto;
-    width: 30px;
-    height: 30px;
-    background-size: 30px;
-    background-image: url('radio-button-uncheck.svg');
-}
-.aba input:checked + label i{
-    background-image: url('radio-button.svg');
-}
-.aba label i{
-    width: 15px;
-    height: 15px;
-    display: inline-block;
-    background: #fff url('http://kuzroman.com/images/jswiddler/circle.svg') no-repeat 50%;
-    background-size: 12px;
-    position: relative;
-    top: 1px;
-    left: -2px;
-}
-
 .meme {
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -159,6 +126,7 @@ input[type="radio"] {
     min-height: 80px;
     display: grid;
     grid-template-rows: 1fr auto;
+    width: 100%;
 }
 
 .meme img {

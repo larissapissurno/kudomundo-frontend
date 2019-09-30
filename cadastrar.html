@@ -25,38 +25,20 @@
             <h3>"{{titles[aba-1]}}"</h3>
         </nav>
 
-        <div class="abas">
-        <ul>
-            <li :class="`aba ${aba > 1 ? 'passed' : ''}`" @click="goTo(1)">
-                <input id="aba1" type="radio" name="aba" value="1" disabled v-model="aba" />
-                <label for="aba1">
-                    <i></i>
-                    <span>Quem?</span>
-                </label>
+        <ul class="abas">
+            <li :class="`aba ${aba === 1 ? 'current' : ''}`" @click="goTo(1)">
+                Quem?
             </li>
-            <li :class="`aba ${aba > 2 ? 'passed' : ''}`" @click="goTo(2)">
-                <input id="aba2" type="radio" name="aba" value="2" disabled v-model="aba" />
-                <label for="aba2">
-                    <i></i>
-                    <span>Qual?</span>
-                </label>
+            <li :class="`aba ${aba === 2 ? 'current' : ''}`" @click="goTo(2)">
+                Qual?
             </li>
-            <li :class="`aba ${aba > 3 ? 'passed' : ''}`" @click="goTo(3)">
-                <input id="aba3" type="radio" name="aba" value="3" disabled v-model="aba" />
-                <label for="aba3">
-                    <i></i>
-                    <span>O quê?</span>
-                </label>
+            <li :class="`aba ${aba === 3 ? 'current' : ''}`" @click="goTo(3)">
+                O quê?
             </li>
-            <li class="aba">
-                <input id="aba4" type="radio" name="aba" value="4" disabled v-model="aba" />
-                <label for="aba4">
-                    <i></i>
-                    <span>Como?</span>
-                </label>
+            <li :class="`aba ${aba === 4 ? 'current' : ''}`">
+                Como?
             </li>
         </ul>
-        </div>
 
         <section class="content">
             <div v-if="aba === 1">
@@ -88,7 +70,7 @@
                 <label>Deixe o seu recado! <small>(Ele deve ser anônimo, não diga seu nome!)</small></label>
                 <textarea v-model="description" rows="10" required></textarea> 
                 <div class="action">
-                    <button type="button" @click="preview" class="button" :disabled="description === ''">Próximo</button>
+                    <button type="button" @click="preview" :disabled="description === ''">Próximo</button>
                 </div>           
             </div>
 
@@ -110,7 +92,7 @@
                     </div>
                 </div>
                 <div class="action">
-                    <button type="button" @click="confirm" class="button">Enviar Kudo!</button>
+                    <a @click="confirm" class="button">Enviar Kudo!</a>
                 </div>
             </div>
     
