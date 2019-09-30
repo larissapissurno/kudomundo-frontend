@@ -87,14 +87,18 @@ html, body {
 }
 
 .selo-verde {
-    height: 50px;
+    height: 30px;
     display: grid;
-    grid-template-columns: 50px auto;
-    background-color: #72ee87;
+    grid-template-columns: 30px auto;
     padding: 5px;
     border-radius: 10px;
     font-weight: bold;
     color: #00530e;
+    cursor: help;
+}
+
+.selo-verde:hover {
+    background-color: #72ee87;
 }
 
 .selo-verde > i {
@@ -103,5 +107,10 @@ html, body {
 }
 
 .selo-verde > label {
-    margin-top: 15px;
+    display: none;
+}
+
+.selo-verde:hover > label {
+    display: block;
+    margin-top: 5px;
 }
