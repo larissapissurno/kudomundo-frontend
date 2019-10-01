@@ -67,6 +67,7 @@
             el: '#app',
             data: {
                 cards:[],
+                memes: [],
                 sustainable: { papers: 0, cards: 0 }
             },
             methods: {
@@ -80,11 +81,18 @@
                     .then(response => response.json())
                     .then(json => this.$data.sustainable = json)
                 },
+                loadMemes() {
+                    fetch(`private/${team}/memes.json`)
+                    .then(response => response.json())
+                    .then(myJson => this.$data.memes = myJson);            
+                },
                 getColor(meme) {
-                    return meme.replace('.png', '');
+                    console.log(this.$data.memes.filter(e => e.image === meme)[0].color);
+                    return this.$data.memes.filter(e => e.image === meme)[0].color;
                 }
             },
             created() {
+                this.loadMemes();
                 this.loadBoard();
                 this.loadSustainable();
             }

@@ -61,7 +61,7 @@
                 <div class="question">
                     <div v-for="(meme, index) in memes" :key="index" class="meme" @click="setMeme(meme)">
                         <img :src="`private/${team}/memes/${meme.image}`"></img>
-                        <label :class="getColor(meme.image)">{{ meme.title }}</label>
+                        <label :class="meme.color">{{ meme.title }}</label>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                 <label class="ql">SEU KUDO ESTA PRONTO! <small>(SÓ FALTAR VOCÊ COLAR NO WALL)</small></label>
 
                 <div class="card">
-                    <div :class="'card-title ' + getColor(meme.image)">
+                    <div :class="`card-title ${meme.color}`">
                         {{meme.title}}
                     </div>
                     <div class="card-content">
@@ -155,9 +155,6 @@
                         console.log(error);
                         alert('Vish, deu ruim');
                     });
-                },
-                getColor(memeImage) {
-                    return memeImage.replace('.png', '');
                 }
             },
             created() {

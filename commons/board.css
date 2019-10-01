@@ -67,7 +67,7 @@ html, body {
 }
 
 .title {
-    background-color: #f43110;
+    background-color: var(--header-color);
     font-size: 18pt;
     font-weight: bold;
     text-transform: uppercase;

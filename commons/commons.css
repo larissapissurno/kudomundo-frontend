@@ -1,14 +1,42 @@
 @import "https://fonts.googleapis.com/css?family=Montserrat";
 
+:root {
+    --tenant: 'teste';
+    --button-color: #EC6707;
+    --header-color: #1f2044;
+    --form-title: #3a3c6e;
+    --font-color: #1f2044;
+    --body-background-color: white;
+    --body-background-image: none;
+    --body-background-repeat: no-repeat;
+    --body-background-size: 100%;
+    --body-background-attachment: fixed;
+
+    --header-bg-size: unset;
+    --header-bg-image: none;
+    --header-bg-repeat: unset;
+    --header-bg-position-x: unset;
+    --header-bg-position-y: unset;
+
+    --breadcrumb-dot-color: #EC6707;
+    --breadcrumb-line-color: #EC6707;
+
+    --color-1: #9e4d52;
+    --color-2: #ffc86d;
+    --color-3: #81cf9b;
+    --color-4: #b8c6d7;    
+}
+
 html, body {
     font-family: Montserrat;
     font-size: 12pt;
     margin: 0;
     overflow-x: hidden;
+    color: var(--font-color);
 }
 
 .header {
-    background-color: #1f2044;
+    background-color: var(--header-color);
     color: white;
     padding: 15px;
     margin: 0;
@@ -29,7 +57,7 @@ h4 {
 
 .button, button {
     border: 3px white solid;
-    background: #EC6707;
+    background: var(--button-color);
     color: white;
     text-align: center;
     text-decoration: none;
@@ -55,8 +83,8 @@ button:disabled, button:hover:disabled,
 button:hover,
 .button:hover {
     background: white;
-    color: #EC6707;
-    border-color: #EC6707;
+    color: var(--button-color);
+    border-color: var(--button-color);
 }
 
 .pull-right { 
@@ -64,3 +92,18 @@ button:hover,
     margin-top: 5px; 
     margin-bottom: 5px; 
 }
+
+@media(min-width: 700px) {
+    .header {
+        background-size: var(--header-bg-size);
+        background-image: var(--header-bg-image);
+        background-repeat: var(--header-bg-repeat);
+        background-position-x: var(--header-bg-position-x);
+        background-position-y: var(--header-bg-position-y);       
+    }
+}
+
+.color-1 { background-color: var(--color-1) !important }
+.color-2 { background-color: var(--color-2) !important }
+.color-3 { background-color: var(--color-3) !important }
+.color-4 { background-color: var(--color-4) !important }

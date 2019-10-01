@@ -1,7 +1,7 @@
-const dsv = localStorage.dsv === 'true';
+const dsv = location.host.includes('localhost');
 
 const uri = dsv ? 'http://localhost:3000' : 'https://xzmw17xdji.execute-api.us-east-1.amazonaws.com/dev';
-const team = dsv ? 'bebulls' : location.host.replace('.kudomundo.ml', '');
+const team = dsv ? localStorage.tenant || 'bebulls' : location.host.replace('.kudomundo.ml', '');
 
 importCustomCss();
 

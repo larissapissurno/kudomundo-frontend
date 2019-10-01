@@ -4,9 +4,13 @@
 }
 
 body {
-    background-color: #1f2044;
     align-items: center;
-    color: #1f2044;
+    color: var(--font-color);
+    background-image: var(--body-background-image);
+    background-color: var(--body-background-color);
+    background-repeat: var(--body-background-repeat);
+    background-size: var(--body-background-size);
+    background-attachment: var(--body-background-attachment);
 }
 
 .abas {
@@ -30,8 +34,7 @@ body {
 .abas > li:before {
     content: "";
     display: block;
-    color: #1f2044;
-    background-color: #1f2044;
+    background-color: var(--breadcrumb-dot-color);
     border: 5px solid #ccc;
     text-align: center;
     width: 1.7em;
@@ -58,7 +61,7 @@ body {
     content: "";
     display: block;
     width: 100%;
-    background-color: #1f2044;
+    background-color: var(--breadcrumb-line-color);
     height: 12px;
     position: absolute;
     left: -50%;
@@ -71,7 +74,7 @@ body {
 }
 
 .header-form {
-    background-color: #3a3c6e;
+    background-color: var(--form-title);
     color: white;
     padding: 10px;
     margin: 0;
@@ -238,7 +241,7 @@ small {
 }
 
 .card-title {
-    background-color: #f43110;
+    background-color: var(--color-1);
     font-size: 18pt;
     font-weight: bold;
     text-transform: uppercase;
