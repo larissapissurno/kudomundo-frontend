@@ -1,5 +1,7 @@
 # Kudomundo Frontend
 
+[![CircleCI](https://circleci.com/gh/ramonnteixeira/kudomundo-frontend/tree/master.svg?style=svg)](https://circleci.com/gh/ramonnteixeira/kudomundo-frontend/tree/master)
+
 Projeto front feito com VueJS para a exibição do board e cadastro de Kudos.
 
 Ele é apenas a casca do projeto, as customizações ficam no projeto kudomundo-whitelabel.
