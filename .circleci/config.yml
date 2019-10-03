@@ -1,9 +1,8 @@
 version: 2.1
 jobs:
   deploy:
-    filters:
-      branches:
-        only: master
+    branches:
+      only: master
 
     docker:
       - image: mesosphere/aws-cli
