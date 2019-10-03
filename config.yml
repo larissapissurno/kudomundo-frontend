@@ -1,0 +1,15 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: mesosphere/aws-cli
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: s3 sync
+          command: aws s3 sync public/ s3://kudomundo/page --delete
+
+      - run:
+          name: CloudFront invalidate
+          command: aws cloudfront create-invalidation --distribution-id E1P85XYM3ZIMR5 --paths "/*"
