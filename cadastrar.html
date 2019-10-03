@@ -68,7 +68,7 @@
 
             <div class="description" v-if="aba === 3">
                 <label>Deixe o seu recado! <small>(Ele deve ser anônimo, não diga seu nome!)</small></label>
-                <textarea v-model="description" rows="10" required></textarea> 
+                <textarea v-model="description" rows="10" required maxlength="256"></textarea> 
                 <div class="action">
                     <button type="button" @click="preview" :disabled="description === ''">Próximo</button>
                 </div>           
@@ -118,9 +118,9 @@
             },
             methods: {
                 loadJson(name) {
-                    fetch(`private/${team}/${name}.json`)
-                    .then(response => response.json())
-                    .then(myJson => this.$data[name] = myJson);            
+                    axios.get(`private/${team}/${name}.json`)
+                    .then(response => this.$data[name] = response.data)
+                    .catch(error => window.location = '/board.html');         
                 },
                 setMember(member) {
                     this.$data.member = member.name;

@@ -6,6 +6,7 @@
     --header-color: #1f2044;
     --form-title: #3a3c6e;
     --font-color: #1f2044;
+    --button-font: var(--font-color);
     --body-background-color: white;
     --body-background-image: none;
     --body-background-repeat: no-repeat;
@@ -71,6 +72,7 @@ h4 {
 .button {
     max-height: 18px;
     display: inline-block;
+    color: var(--button-font);
 }
 
 button:disabled, button:hover:disabled, 
@@ -107,3 +109,8 @@ button:hover,
 .color-2 { background-color: var(--color-2) !important }
 .color-3 { background-color: var(--color-3) !important }
 .color-4 { background-color: var(--color-4) !important }
+
+.content-center {
+    display: flex;
+    justify-content: center;
+}

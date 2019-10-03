@@ -11,6 +11,8 @@ body {
     background-repeat: var(--body-background-repeat);
     background-size: var(--body-background-size);
     background-attachment: var(--body-background-attachment);
+    background-position-x: var(--body-background-position-x);
+    background-position-y: var(--body-background-position-y);
 }
 
 .abas {
