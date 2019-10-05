@@ -28,18 +28,22 @@ jobs:
           paths:
             - node_modules
           key: dependencies-cache-{{ checksum "package.json" }}
-      - persist_to_workspace:
-          root: /tmp/workspace
+
+      - save_cache:
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
           paths:
-            - dist/*
+            - dist
+
+
   deploy:
     working_directory: /tmp/workspace
     docker:
       - image: mesosphere/aws-cli
 
     steps:
-      - attach_workspace:
-          at: /tmp/workspace
+      - restore_cache:
+          keys:
+            - v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
       - run:
           name: s3 sync
