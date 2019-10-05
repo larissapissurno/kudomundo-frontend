@@ -31,7 +31,7 @@ jobs:
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
-            - dist/
+            - dist/*
   deploy:
     working_directory: /tmp/workspace
     docker:
