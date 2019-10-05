@@ -38,15 +38,15 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/python:3.6.1
+      - image: mesosphere/aws-cli
     working_directory: ~/kudomundo-frontend
 
     steps:
       - run:
-          name: install aws cli
+          name: install certificate
           command: |
-           pip install --upgrade pip
-           pip install awscli --upgrade --user
+            apk update
+            apk add ca-certificates
 
       - restore_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
