@@ -1,9 +1,10 @@
 version: 2
 jobs:
   build:
-    working_directory: /tmp/workspace
     docker:
       - image: circleci/node:10.16.3
+    working_directory: ~/kudomundo-frontend
+
     steps:
       - checkout
 
@@ -36,14 +37,17 @@ jobs:
 
 
   deploy:
-    working_directory: /tmp/workspace
     docker:
-      - image: mesosphere/aws-cli
+      - image: circleci/python:3.6.1
+    working_directory: ~/kudomundo-frontend
 
     steps:
+      - run:
+          name: install aws cli
+          command: pip install awscli
+
       - restore_cache:
-          keys:
-            - v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
       - run:
           name: s3 sync
