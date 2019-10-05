@@ -29,6 +29,9 @@ jobs:
             - node_modules
           key: dependencies-cache-{{ checksum "package.json" }}
 
+      - store_artifacts:
+          path: dist
+
   deploy:
     working_directory: ~/kudomundo-frontend
     docker:
