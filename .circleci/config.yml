@@ -53,7 +53,7 @@ jobs:
 
       - run:
           name: s3 sync
-          command: aws s3 sync ~/kudomundo-frontend/dist/ s3://kudomundo.ml/page --delete
+          command: aws s3 sync /home/circleci/kudomundo-frontend/dist/ s3://kudomundo.ml/page --delete
       # - run:
       #     name: CloudFront invalidate
       #     command: aws cloudfront create-invalidation --distribution-id E1P85XYM3ZIMR5 --paths "/*"
