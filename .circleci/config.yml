@@ -44,7 +44,9 @@ jobs:
     steps:
       - run:
           name: install aws cli
-          command: pip install awscli
+          command: |
+           pip3 install --upgrade pip3
+           pip3 install awscli --upgrade --user
 
       - restore_cache:
           key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
