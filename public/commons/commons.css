@@ -32,17 +32,8 @@ html, body {
     font-family: Montserrat;
     font-size: 12pt;
     margin: 0;
-    overflow-x: hidden;
+    overflow: hidden;
     color: var(--font-color);
-}
-
-.header {
-    background-color: var(--header-color);
-    color: white;
-    padding: 15px;
-    margin: 0;
-    font-weight: 900;
-    text-align: center;
 }
 
 h1 {    
@@ -93,16 +84,6 @@ button:hover,
     float: right; 
     margin-top: 5px; 
     margin-bottom: 5px; 
-}
-
-@media(min-width: 700px) {
-    .header {
-        background-size: var(--header-bg-size);
-        background-image: var(--header-bg-image);
-        background-repeat: var(--header-bg-repeat);
-        background-position-x: var(--header-bg-position-x);
-        background-position-y: var(--header-bg-position-y);       
-    }
 }
 
 .color-1 { background-color: var(--color-1) !important }
