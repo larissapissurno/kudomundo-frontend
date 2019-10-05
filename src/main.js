@@ -15,7 +15,7 @@ Vue.use(Adal, {
   config: {
     tenant: 'ea47001a-3428-40f3-8ea1-86bdb1a3bc84',
     clientId: '026d3962-dfa5-4720-a65f-2c62d1edd4a8',
-    redirectUri: location.host,
+    redirectUri: location.href,
     cacheLocation: 'localStorage'
   },
   requireAuthOnInitialize: true,
