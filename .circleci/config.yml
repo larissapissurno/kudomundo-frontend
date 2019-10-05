@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/kudomundo-frontend
     docker:
       - image: circleci/node:10.16.3
     steps:
@@ -28,16 +27,18 @@ jobs:
           paths:
             - node_modules
           key: dependencies-cache-{{ checksum "package.json" }}
-
-      - store_artifacts:
-          path: dist
-
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - dist/
   deploy:
-    working_directory: ~/kudomundo-frontend
     docker:
       - image: mesosphere/aws-cli
 
     steps:
+      - attach_workspace:
+          at: /tmp/workspace
+
       - run:
           name: s3 sync
           command: aws s3 sync dist/ s3://kudomundo.ml/page --delete
