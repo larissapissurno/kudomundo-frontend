@@ -1,6 +1,7 @@
 version: 2
 jobs:
   build:
+    working_directory: /tmp/workspace
     docker:
       - image: circleci/node:10.16.3
     steps:
@@ -32,6 +33,7 @@ jobs:
           paths:
             - dist/
   deploy:
+    working_directory: /tmp/workspace
     docker:
       - image: mesosphere/aws-cli
 
