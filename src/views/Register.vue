@@ -149,7 +149,8 @@ export default {
         member: this.$data.member,
         description: this.$data.description,
         meme: this.$data.meme.image,
-        title: this.$data.meme.title
+        title: this.$data.meme.title,
+        author: this.$adal.user.profile.unique_name
       }
     },
     filteredMembers () {
