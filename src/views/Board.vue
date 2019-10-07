@@ -44,7 +44,6 @@ export default {
       console.log('carregando board')
       axios.get(`${uri}/board/${team}/${year}-${weekOfYear}`)
         .then(res => {
-          console.log(res)
           this.$data.cards = res.data.sort((a, b) => moment(b.timestamp).diff(moment(a.timestamp)))
         })
     },
@@ -62,7 +61,8 @@ export default {
         })
     },
     getColor (meme) {
-      return this.$data.memes.filter(e => e.image === meme)[0].color
+      const filtered = this.$data.memes.filter(e => e.image === meme)[0] || {};
+      return filtered.color
     }
   },
   created () {

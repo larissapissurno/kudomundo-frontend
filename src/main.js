@@ -1,20 +1,19 @@
 import Vue from 'vue'
 import axios from 'axios'
 // eslint-disable-next-line
-import { default as Adal, AxiosAuthHttp } from 'vue-adal'
+import { default as Adal, AuthenticationContext } from 'vue-adal'
 import App from './App.vue'
 import router from './router'
 
-import { importCustomCss } from './tenant'
+import { importCustomCss, uri } from './tenant'
 
 Vue.config.productionTip = false
-const graphApiBase = `https://graph.windows.net`
-const graphApiResource = '00000002-0000-0000-c000-000000000000'
+const clientId = '026d3962-dfa5-4720-a65f-2c62d1edd4a8'
 
 Vue.use(Adal, {
   config: {
     tenant: 'ea47001a-3428-40f3-8ea1-86bdb1a3bc84',
-    clientId: '026d3962-dfa5-4720-a65f-2c62d1edd4a8',
+    clientId: clientId,
     redirectUri: location.href,
     cacheLocation: 'localStorage'
   },
@@ -22,26 +21,19 @@ Vue.use(Adal, {
   router: router
 })
 
-Vue.use({
-  install (vue, opts = {}) {
-    vue.prototype.$graphApi = AxiosAuthHttp.createNewClient({
-      axios: axios,
-      resourceId: graphApiResource,
-      router: router,
-      baseUrl: graphApiBase,
-
-      onTokenSuccess (http, context, token) {
-        if (context.user) {
-          http.defaults.baseURL = `${graphApiBase}/${context.user.profile.tid}`
-        }
-      },
-
-      onTokenFailure (error) {
-        console.log(error)
-      }
-    })
-  }
-})
+axios.interceptors.request.use(
+  async (config) => {
+    const token = AuthenticationContext.adalContext.getCachedToken(clientId);
+    // eslint-disable-next-line
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+  },
+  (err) => {
+    if (err.response.status === 401 || err.response.status === 403) {
+      AuthenticationContext.acquireTokenRedirect(clientId);
+    }
+  },
+ );
 
 new Vue({
   router,

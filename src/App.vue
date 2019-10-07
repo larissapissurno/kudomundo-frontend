@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-if="$adal.isAuthenticated()">
     <Header />
     <router-view/>
   </div>
