@@ -5,7 +5,7 @@ import { default as Adal, AuthenticationContext } from 'vue-adal'
 import App from './App.vue'
 import router from './router'
 
-import { importCustomCss, uri } from './tenant'
+import { importCustomCss } from './tenant'
 
 Vue.config.productionTip = false
 const clientId = '026d3962-dfa5-4720-a65f-2c62d1edd4a8'
@@ -23,17 +23,17 @@ Vue.use(Adal, {
 
 axios.interceptors.request.use(
   async (config) => {
-    const token = AuthenticationContext.adalContext.getCachedToken(clientId);
+    const token = AuthenticationContext.adalContext.getCachedToken(clientId)
     // eslint-disable-next-line
     config.headers.Authorization = `Bearer ${token}`;
-    return config;
+    return config
   },
   (err) => {
     if (err.response.status === 401 || err.response.status === 403) {
-      AuthenticationContext.acquireTokenRedirect(clientId);
+      AuthenticationContext.acquireTokenRedirect(clientId)
     }
-  },
- );
+  }
+)
 
 new Vue({
   router,

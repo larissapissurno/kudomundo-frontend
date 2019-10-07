@@ -61,7 +61,7 @@ export default {
         })
     },
     getColor (meme) {
-      const filtered = this.$data.memes.filter(e => e.image === meme)[0] || {};
+      const filtered = this.$data.memes.filter(e => e.image === meme)[0] || {}
       return filtered.color
     }
   },
