@@ -18,9 +18,13 @@ export default {
   },
   methods: {
     loadSustainable () {
-      axios.get(`${uri}/sustainable`)
+      axios
+        .get(`${uri}/sustainable`)
         .then(response => {
           this.$data.sustainable = response.data
+        })
+        .catch(error => {
+          console.log(error)
         })
     }
   },
