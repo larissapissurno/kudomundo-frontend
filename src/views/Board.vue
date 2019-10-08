@@ -25,7 +25,7 @@ import Card from '@/components/Card'
 import axios from 'axios'
 import moment from 'moment'
 
-import { uri, team, year, weekOfYear } from '@/tenant'
+import { uri, team } from '@/tenant'
 
 export default {
   name: 'Board',
@@ -36,13 +36,13 @@ export default {
   data: function () {
     return {
       cards: [],
-      memes: []
+      memes: [],
+      period: 'week'
     }
   },
   methods: {
     loadBoard () {
-      console.log('carregando board')
-      axios.get(`${uri}/board/${team}/${year}-${weekOfYear}`)
+      axios.get(`${uri}/board/${team}?period=${this.$data.period}`)
         .then(res => {
           this.$data.cards = res.data.sort((a, b) => moment(b.timestamp).diff(moment(a.timestamp)))
         })
@@ -63,6 +63,10 @@ export default {
     getColor (meme) {
       const filtered = this.$data.memes.filter(e => e.image === meme)[0] || {}
       return filtered.color
+    },
+    setPeriod (period) {
+      this.$data.period = period
+      this.loadBoard()
     }
   },
   created () {
