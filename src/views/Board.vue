@@ -3,8 +3,14 @@
     <!-- {{ "Hello, " + $adal.user.profile.name + ' (' + $adal.user.profile.unique_name + ')' }} -->
     <div class="actions">
         <GreenSeal />
-        <div></div>
-        <router-link class="button" to="/register" title="Libera ai seu Kudo, vai.">+ Enviar</router-link>
+        <div class="centered">
+          <a class="button filter" :class="{'active': period === 'week'}" @click="setPeriod('week')">semana</a>
+          <a class="button filter" :class="{'active': period === 'month'}" @click="setPeriod('month')">mês</a>
+          <a class="button filter" :class="{'active': period === 'quarter'}" @click="setPeriod('quarter')">quarter</a>
+        </div>
+        <div class="right">
+          <router-link class="button" to="/register" title="Libera ai seu Kudo, vai.">+ Enviar</router-link>
+        </div>
     </div>
     <div class="content-center" v-if="cards.length === 0">
         <img src="../assets/travolta-kudo.gif">
@@ -27,6 +33,13 @@ import moment from 'moment'
 
 import { uri, team } from '@/tenant'
 
+import Vue from 'vue'
+import Loading from 'vue-loading-overlay'
+
+// eslint-disable-next-line
+import 'vue-loading-overlay/dist/vue-loading.css'
+Vue.use(Loading)
+
 export default {
   name: 'Board',
   components: {
@@ -42,9 +55,16 @@ export default {
   },
   methods: {
     loadBoard () {
-      axios.get(`${uri}/board/${team}?period=${this.$data.period}`)
+      const loader = this.$loading.show()
+      axios
+        .get(`${uri}/board/${team}?period=${this.$data.period}`)
         .then(res => {
+          loader.hide()
           this.$data.cards = res.data.sort((a, b) => moment(b.timestamp).diff(moment(a.timestamp)))
+        })
+        .catch(error => {
+          console.log(error)
+          loader.hide()
         })
     },
     loadMemes () {
@@ -65,8 +85,10 @@ export default {
       return filtered.color
     },
     setPeriod (period) {
-      this.$data.period = period
-      this.loadBoard()
+      if (this.$data.period !== period) {
+        this.$data.period = period
+        this.loadBoard()
+      }
     }
   },
   created () {
@@ -112,7 +134,7 @@ export default {
     margin-top: 10px;
     margin-bottom: 10px;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 250px 1fr 250px;
 }
 
 </style>

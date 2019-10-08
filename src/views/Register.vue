@@ -382,10 +382,5 @@ small {
     }
 }
 
-.centered {
-    display: flex;
-    justify-content: center;
-}
-
 .m15 { margin: 15px }
 </style>
