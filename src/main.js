@@ -4,8 +4,11 @@ import axios from 'axios'
 import { default as Adal, AuthenticationContext } from 'vue-adal'
 import App from './App.vue'
 import router from './router'
+import VueToastr from 'vue-toastr'
 
 import { importCustomCss } from './tenant'
+
+Vue.use(VueToastr, {})
 
 Vue.config.productionTip = false
 const clientId = '026d3962-dfa5-4720-a65f-2c62d1edd4a8'
