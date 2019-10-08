@@ -82,6 +82,7 @@ button:hover,
 }
 
 .filter {
+    padding: 5px;
     margin-left: 10px;
     background-color: white;
     border-color: var(--filter-button-color);
@@ -118,6 +119,7 @@ button:hover,
 .centered {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .right {
