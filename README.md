@@ -1,6 +1,6 @@
 # Kudomundo Frontend
 
-[![CircleCI](https://circleci.com/gh/db1group/kudomundo-frontend.svg?style=svg)](https://circleci.com/gh/db1group/kudomundo-frontend)
+[![CircleCI](https://circleci.com/gh/db1group/kudomundo-frontend/tree/master.svg?style=svg)](https://circleci.com/gh/db1group/kudomundo-frontend/tree/master)
 
 Projeto front feito com VueJS para a exibição do board e cadastro de Kudos.
 
