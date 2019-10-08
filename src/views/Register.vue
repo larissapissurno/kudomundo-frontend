@@ -133,7 +133,7 @@ export default {
 
       axios.post(`${uri}/card/${team}`, card)
         .then(response => {
-          this.$toastr.s('Seu Kudo é Meu agora! Ta salvo.')
+          this.$toastr.s('Seu Kudo é Meu agora!', 'Ta salvo')
           this.$router.push('/')
         })
         .catch(error => {
