@@ -12,9 +12,9 @@ Andamento do projeto
 
 2. [x] Definir variáveis de customização
 
-3. [ ] Adicionar autenticação OAuth2
+3. [x] Adicionar autenticação OAuth2
 
-4. [ ] Separar front em componentes
+4. [x] Separar front em componentes
 
 5. [ ] Criar cadastro de time
 
