@@ -1,7 +1,9 @@
 <template>
   <div>
-      <i></i>
-      <label>{{sustainable.papers}} folhas A4 preservadas</label>
+    <div class="green-seal">
+        <i></i>
+        <label>{{sustainable.papers}} folhas A4 preservadas</label>
+    </div>
   </div>
 </template>
 
@@ -35,7 +37,7 @@ export default {
 </script>
 
 <style scoped>
-div {
+.green-seal {
     height: 30px;
     display: grid;
     grid-template-columns: 30px auto;
@@ -46,21 +48,27 @@ div {
     cursor: help;
 }
 
-div:hover {
-    background-color: #72ee87;
+.green-seal:hover {
+  background-color: #72ee87;
+    width: 260px;
+    position: absolute;
+    z-index: 30;
+    height: 40px;
 }
 
-div > i {
+.green-seal:hover > label {
+    display: block;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.green-seal > i {
     background-image: url(../assets/seal-simple.svg);
     background-repeat: no-repeat;
 }
 
-div > label {
+.green-seal > label {
     display: none;
 }
 
-div:hover > label {
-    display: block;
-    margin-top: 5px;
-}
 </style>

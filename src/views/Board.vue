@@ -134,7 +134,7 @@ export default {
     margin-top: 10px;
     margin-bottom: 10px;
     display: grid;
-    grid-template-columns: 250px 1fr 250px;
+    grid-template-columns: 95px 1fr 95px;
 }
 
 </style>
