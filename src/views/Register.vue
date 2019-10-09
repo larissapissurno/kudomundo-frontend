@@ -185,6 +185,7 @@ export default {
 
 .abas {
     padding-top: 15px;
+    padding-left: 0px;
     margin: 0;
     background-color: white;
     position: relative;
