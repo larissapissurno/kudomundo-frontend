@@ -22,8 +22,15 @@ jobs:
           command: yarn lint
 
       - run:
+          name: test
+          command: yarn test
+
+      - run:
           name: build
           command: yarn build
+
+      - store_artifacts:
+          path: coverage
 
       - save_cache:
           paths:
