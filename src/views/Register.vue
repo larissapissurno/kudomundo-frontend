@@ -28,7 +28,7 @@
 
                   <div class="question" v-if="aba === 1">
                       <div v-for="(memberO, index) in filteredMembers()" :key="index" class="member" @click="setMember(memberO)">
-                          <img :src="`https://www.gravatar.com/avatar/${md5(memberO.email)}?s=60`" class="member-image">
+                          <img :src="`https://www.gravatar.com/avatar/${md5(memberO.email)}?s=60`" class="member-image" alt="gravatar do membro">
 
                           <label class="member-name">
                               {{ memberO.name }}
@@ -41,7 +41,7 @@
                   <label class="question-label">Escolha!</label>
                   <div class="question">
                       <div v-for="(meme, index) in memes" :key="index" class="meme" @click="setMeme(meme)">
-                          <img :src="`private/${team}/memes/${meme.image}`">
+                          <img :src="`private/${team}/memes/${meme.image}`" alt="imagem da figurinha">
                           <label :class="meme.color">{{ meme.title }}</label>
                       </div>
                   </div>

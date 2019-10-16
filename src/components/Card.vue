@@ -4,7 +4,7 @@
           {{card.title}}
       </div>
       <div class="content">
-          <img :src="`private/${team}/memes/${card.meme}`" class="meme">
+          <img :src="`private/${team}/memes/${card.meme}`" class="meme" alt="imagem da figurinha do card">
           <div class="member">
               <b>{{card.member}},</b>
           </div>

@@ -34,6 +34,7 @@
     "codecov": "^3.6.1",
     "flush-promises": "^1.0.2",
     "jest-transform-stub": "^2.0.0",
+    "sonarqube-scanner": "^2.5.0",
     "vue-template-compiler": "^2.6.10"
   },
   "browserslist": [
