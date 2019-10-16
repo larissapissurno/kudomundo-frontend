@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="content-center" v-if="cards.length === 0">
-        <img src="../assets/travolta-kudo.gif">
+        <img src="../assets/travolta-kudo.gif" alt="Animação para painel vazio">
     </div>
     <div class="cards" v-if="cards.length > 0">
         <Card
