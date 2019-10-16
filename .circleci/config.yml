@@ -75,9 +75,10 @@ jobs:
       - checkout
 
       - restore_cache:
-          keys:
-            - dependencies-cache-{{ checksum "package.json" }}
-            - v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+          key: dependencies-cache-{{ checksum "package.json" }}
+
+      - restore_cache:
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
 
       - run:
           name: sonarcloud
