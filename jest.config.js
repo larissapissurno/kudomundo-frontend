@@ -31,6 +31,16 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.{js,jsx,vue}',
     '!**/node_modules/**',
-    '!**/vendor/**'
-  ]
+    '!**/vendor/**',
+    '!src/main.js',
+    '!src/router.js'
+  ],
+  coverageThreshold: {
+    global: {
+      branches: 100,
+      functions: 100,
+      lines: 100,
+      statements: 100
+    }
+  }  
 }

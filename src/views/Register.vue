@@ -75,8 +75,9 @@
 <script>
 import axios from 'axios'
 import { team, uri } from '../tenant'
-import * as md5sum from 'md5'
 import Card from '../components/Card'
+
+const md5sum = require('md5')
 
 export default {
   name: 'Register',

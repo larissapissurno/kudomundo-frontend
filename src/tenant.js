@@ -2,7 +2,10 @@ import moment from 'moment'
 
 const dsv = location.host.includes('localhost')
 
+/* istanbul ignore next */
 const uri = dsv ? 'http://localhost:3000' : 'https://xzmw17xdji.execute-api.us-east-1.amazonaws.com/dev'
+
+/* istanbul ignore next */
 const team = dsv ? localStorage.tenant || 'bebulls' : location.host.replace('.kudomundo.ml', '')
 
 const {

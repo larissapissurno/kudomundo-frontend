@@ -34,11 +34,6 @@ import moment from 'moment'
 import { uri, team } from '@/tenant'
 
 import Vue from 'vue'
-import Loading from 'vue-loading-overlay'
-
-// eslint-disable-next-line
-import 'vue-loading-overlay/dist/vue-loading.css'
-Vue.use(Loading)
 
 export default {
   name: 'Board',

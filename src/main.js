@@ -6,8 +6,13 @@ import App from './App.vue'
 import router from './router'
 import VueToastr from 'vue-toastr'
 
+import Loading from 'vue-loading-overlay'
+// eslint-disable-next-line
+import 'vue-loading-overlay/dist/vue-loading.css'
+
 import { importCustomCss } from './tenant'
 
+Vue.use(Loading)
 Vue.use(VueToastr, {})
 
 Vue.config.productionTip = false
