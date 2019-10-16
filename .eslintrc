@@ -1,7 +1,17 @@
 {
-    "root": true,
-    "extends": [
-        "plugin:vue/essential",
-        "@vue/standard"
-    ]
+  "root": true,
+  "extends": [
+    "plugin:vue/essential",
+    "@vue/standard"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "**/__tests__/*.{j,t}s?(x)"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }
