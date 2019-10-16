@@ -81,7 +81,7 @@ jobs:
 
       - run:
           name: sonarcloud
-          command: yarn sonar-scanner -Dsonar.projectKey=kudomundo-frontend -Dsonar.organization=db1global -Dsonar.sources=.\src -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=5e0469dead75c747b45b127591547db60e04d9aa
+          command: yarn sonar-scanner -Dsonar.projectKey=kudomundo-frontend -Dsonar.organization=db1global -Dsonar.sources=./src -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=5e0469dead75c747b45b127591547db60e04d9aa
 
 workflows:
   version: 2
