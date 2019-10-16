@@ -9,16 +9,16 @@ const router = new VueRouter()
 describe('App.vue', () => {
   it('renders app', () => {
     const $adal = {
-      isAuthenticated() {
+      isAuthenticated () {
         return true
       }
     }
 
     const wrapper = shallowMount(App, {
       localVue,
-      router,      
+      router,
       mocks: {
-        $adal,
+        $adal
       }
     })
     expect(wrapper.find('header')).toBeTruthy()

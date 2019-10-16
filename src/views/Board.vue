@@ -33,8 +33,6 @@ import moment from 'moment'
 
 import { uri, team } from '@/tenant'
 
-import Vue from 'vue'
-
 export default {
   name: 'Board',
   components: {

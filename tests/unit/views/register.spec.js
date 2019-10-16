@@ -1,11 +1,11 @@
-import { shallowMount, createLocalVue, config } from '@vue/test-utils'
-import axios from 'axios';
+import { shallowMount, createLocalVue } from '@vue/test-utils'
+import axios from 'axios'
 import flushPromises from 'flush-promises'
 import Component from '@/views/Register.vue'
 import VueRouter from 'vue-router'
 import VueToastr from 'vue-toastr'
 
-jest.mock('axios');
+jest.mock('axios')
 
 describe('Register.vue', () => {
   const $adal = {
@@ -17,33 +17,20 @@ describe('Register.vue', () => {
   localVue.use(VueToastr)
   const router = new VueRouter()
 
-  const data = [{
-    title: 'teste01',
-    member: 'membro card 01',
-    description: 'teste',
-    timestamp: 1571172957
-  },
-  {
-    title: 'teste02',
-    member: 'membro card 02',
-    description: 'teste',
-    timestamp: 1571173278
-  }]
-
   beforeEach(() => {
     global.console = {
-      log() {}
+      log () {}
     }
-    
+
     global.fetch = (uri) => {
       let data = []
       if (uri === 'private/bebulls/members.json') {
-        data = [{ 
+        data = [{
           name: 'John Smith',
           email: 'john@db1.com.br'
         }]
       } else if (uri === 'private/bebulls/memes.json') {
-        data = [{ 
+        data = [{
           title: 'Passando pra dizer:',
           image: 'passando_pra_dizer.png',
           color: 'color-2'
@@ -55,11 +42,10 @@ describe('Register.vue', () => {
         json: () => data
       })
     }
-
   })
 
-  it('renders component when fetch members', async() => {
-    const wrapper = shallowMount(Component, { 
+  it('renders component when fetch members', async () => {
+    const wrapper = shallowMount(Component, {
       localVue,
       router,
       mocks: { $adal }
@@ -71,8 +57,8 @@ describe('Register.vue', () => {
     expect(wrapper.vm.$data.members.length).toBe(1)
   })
 
-  it('should be aba 1 when aba===1 goTo 3', async() => {
-    const wrapper = shallowMount(Component, { 
+  it('should be aba 1 when aba===1 goTo 3', async () => {
+    const wrapper = shallowMount(Component, {
       localVue,
       router,
       mocks: { $adal }
@@ -83,8 +69,8 @@ describe('Register.vue', () => {
     expect(wrapper.vm.$data.aba).toBe(1)
   })
 
-  it('should be aba 1 when aba===3 goTo 1', async() => {
-    const wrapper = shallowMount(Component, { 
+  it('should be aba 1 when aba===3 goTo 1', async () => {
+    const wrapper = shallowMount(Component, {
       localVue,
       router,
       mocks: { $adal }
@@ -96,16 +82,16 @@ describe('Register.vue', () => {
     expect(wrapper.vm.$data.aba).toBe(1)
   })
 
-  it('should be post card', async() => {
-    const resp = { };
-    axios.post.mockResolvedValue(resp);
+  it('should be post card', async () => {
+    const resp = { }
+    axios.post.mockResolvedValue(resp)
 
-    const wrapper = shallowMount(Component, { 
+    const wrapper = shallowMount(Component, {
       localVue,
       router,
       mocks: { $adal }
     })
-    const spy = jest.spyOn(wrapper.vm.$toastr, 's');
+    const spy = jest.spyOn(wrapper.vm.$toastr, 's')
     wrapper.vm.$router.push = jest.fn()
 
     await flushPromises()
@@ -113,7 +99,7 @@ describe('Register.vue', () => {
     expect(wrapper.vm.$data.aba).toBe(2)
     expect(wrapper.vm.$data.member).toBe('john')
 
-    wrapper.vm.setMeme({ 
+    wrapper.vm.setMeme({
       title: 'Passando pra dizer:',
       image: 'passando_pra_dizer.png',
       color: 'color-2'
@@ -130,15 +116,15 @@ describe('Register.vue', () => {
     expect(spy).toBeCalled()
   })
 
-  it('should be show error when post failed', async() => {
-    axios.post.mockImplementation(() => Promise.reject(undefined));
+  it('should be show error when post failed', async () => {
+    axios.post.mockImplementation(() => Promise.reject(Error('teste')))
 
-    const wrapper = shallowMount(Component, { 
+    const wrapper = shallowMount(Component, {
       localVue,
       router,
       mocks: { $adal }
     })
-    const spy = jest.spyOn(wrapper.vm.$toastr, 'e');
+    const spy = jest.spyOn(wrapper.vm.$toastr, 'e')
     wrapper.vm.getCard = jest.fn(() => {})
 
     await flushPromises()
@@ -148,19 +134,18 @@ describe('Register.vue', () => {
     expect(spy).toBeCalled()
   })
 
-  it('should change route when fetch fail', async() => {
-    global.fetch = (uri) => Promise.reject(undefined);
+  it('should change route when fetch fail', async () => {
+    global.fetch = (uri) => Promise.reject(Error('teste'))
 
-    const wrapper = shallowMount(Component, { 
+    const wrapper = shallowMount(Component, {
       localVue,
       router,
       mocks: { $adal }
     })
     wrapper.vm.$router.push = jest.fn()
-    
+
     await flushPromises()
 
     expect(wrapper.vm.$router.push).toBeCalled()
   })
-
 })

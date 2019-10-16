@@ -42,5 +42,5 @@ module.exports = {
       lines: 100,
       statements: 100
     }
-  }  
+  }
 }
