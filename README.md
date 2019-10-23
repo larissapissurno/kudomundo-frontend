@@ -9,7 +9,7 @@
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=kudomundo-frontend&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=kudomundo-frontend)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=kudomundo-frontend&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=kudomundo-frontend)
 
-[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fapi%2Fgithub.com%2Fdb1group%2Fkudomundo-frontend%2Fmaster)](https://stryker-mutator.github.io)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fdb1group%2Fkudomundo-frontend%2Fmaster)](https://stryker-mutator.github.io)
 
 
 Projeto front feito com VueJS para a exibição do board e cadastro de Kudos.
