@@ -8,12 +8,11 @@ import VueToastr from 'vue-toastr'
 jest.mock('axios')
 
 describe('Register.vue', () => {
-  
   const mount = () => {
     const $adal = {
       user: { profile: { unique_name: 'teste' } }
     }
-    
+
     return shallowMount(Component, {
       localVue,
       router,
@@ -84,7 +83,6 @@ describe('Register.vue', () => {
     expect(wrapper.vm.filteredMembers()[0].email !== 'teste').toBeTruthy()
   })
 
-
   it('should be aba 1 when aba===1 goTo 3', async () => {
     const wrapper = mount()
 
@@ -146,7 +144,7 @@ describe('Register.vue', () => {
 
     wrapper.vm.confirm()
     await flushPromises()
-    
+
     expect(wrapper.vm.$router.push).toBeCalledWith('/')
     expect(spy).toBeCalledWith('Seu Kudo é Meu agora!', 'Ta salvo')
   })

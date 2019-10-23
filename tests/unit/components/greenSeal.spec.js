@@ -16,9 +16,9 @@ describe('GreenSeal.vue', () => {
     const resp = { data }
     axios.get.mockImplementation((uri) => {
       if (uri === 'http://localhost:3000/sustainable') {
-        return data;
+        return data
       }
-      throw Error('teste');
+      throw Error('teste')
     })
 
     axios.get.mockResolvedValue(resp)
@@ -28,21 +28,21 @@ describe('GreenSeal.vue', () => {
     expect(wrapper.text()).toBeTruthy()
 
     await flushPromises()
-    
+
     expect(wrapper.text()).toContain('300 folhas A4 preservadas')
   })
   it('renders component when axios failed', async () => {
-    let message;
+    let message
     global.console = {
-      log: (error) => message = error
+      log: (error) => { message = error }
     }
     const expectedError = Error('teste')
     axios.get.mockImplementation((uri) => {
       if (uri === 'http://localhost:3000/sustainable') {
         return Promise.reject(expectedError)
       }
-      
-      return {};
+
+      return {}
     })
 
     const wrapper = shallowMount(Component, {})
@@ -57,8 +57,8 @@ describe('GreenSeal.vue', () => {
       if (uri === 'http://localhost:3000/sustainable') {
         return Promise.reject(expectedError)
       }
-      
-      return {};
+
+      return {}
     })
 
     const wrapper = shallowMount(Component, {})
@@ -66,5 +66,5 @@ describe('GreenSeal.vue', () => {
     await flushPromises()
     expect(wrapper.text()).toContain('0 folhas A4 preservadas')
     expect(console.log).toBeCalledTimes(1)
-  })  
+  })
 })

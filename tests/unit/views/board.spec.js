@@ -40,13 +40,13 @@ describe('Board.vue', () => {
 
     global.fetch = (uri) => {
       if (uri === 'private/bebulls/memes.json') {
-        return Promise.resolve({status: 404})
+        return Promise.resolve({ status: 404 })
       } else {
         return Promise.reject(Error('uri nao existe'))
       }
     }
 
-    global.alert = (message) => errorMessage = message
+    global.alert = (message) => { errorMessage = message }
 
     wrapper = shallowMount(Component, {
       localVue,
@@ -105,18 +105,19 @@ describe('Board.vue', () => {
   it('should find color of meme', async () => {
     global.fetch = (uri) => {
       if (uri === 'private/bebulls/memes.json') {
-        return Promise.resolve({ status: 200, json: () => 
-          [{ 
-            title: 'Meme 1',
-            image: "meme1.png",
-            color: "color-1"
-          },
-          { 
-            title: 'Meme 2',
-            image: "meme2.png",
-            color: "color-2"
-          }]
-       })
+        return Promise.resolve({ status: 200,
+          json: () =>
+            [{
+              title: 'Meme 1',
+              image: 'meme1.png',
+              color: 'color-1'
+            },
+            {
+              title: 'Meme 2',
+              image: 'meme2.png',
+              color: 'color-2'
+            }]
+        })
       }
     }
 
@@ -125,6 +126,4 @@ describe('Board.vue', () => {
     expect(wrapper.vm.getColor('meme1.png')).toBe('color-1')
     expect(wrapper.vm.getColor('meme2.png')).toBe('color-2')
   })
-
-
 })
