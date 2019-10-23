@@ -12,6 +12,8 @@ describe('Card.vue', () => {
         }
       }
     })
+    expect(wrapper.name()).toBe('Card')
     expect(wrapper.text()).toBeTruthy()
+    expect(wrapper.vm.$data.team).toBe('bebulls')
   })
 })

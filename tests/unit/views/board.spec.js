@@ -27,13 +27,26 @@ const data = [{
 
 describe('Board.vue', () => {
   let wrapper
+  let errorMessage
 
   beforeEach(() => {
     const resp = { data }
-    axios.get.mockResolvedValue(resp)
+    axios.get.mockImplementation((uri) => {
+      if (uri === 'http://localhost:3000/board/bebulls?period=week') {
+        return Promise.resolve(resp)
+      }
+      return Promise.reject(Error('uri nao existe'))
+    })
 
-    global.fetch = () => Promise.resolve([])
-    global.alert = (message) => null
+    global.fetch = (uri) => {
+      if (uri === 'private/bebulls/memes.json') {
+        return Promise.resolve({status: 404})
+      } else {
+        return Promise.reject(Error('uri nao existe'))
+      }
+    }
+
+    global.alert = (message) => errorMessage = message
 
     wrapper = shallowMount(Component, {
       localVue,
@@ -42,9 +55,11 @@ describe('Board.vue', () => {
   })
 
   it('renders component when axios get', async () => {
+    expect(wrapper.name()).toBe('Board')
     expect(wrapper.text()).toBeTruthy()
     await flushPromises()
     expect(wrapper.vm.$data.cards.length).toBe(2)
+    expect(errorMessage).toBe('Time não configurado, verifique com seu time ou fale com seu gestor.')
   })
 
   it('should not be reload when same period', () => {
@@ -60,7 +75,11 @@ describe('Board.vue', () => {
   })
 
   it('should be load memes', async () => {
-    global.fetch = () => Promise.resolve({ status: 200, json: () => [{ name: '1' }, { name: '2' }] })
+    global.fetch = (uri) => {
+      if (uri === 'private/bebulls/memes.json') {
+        return Promise.resolve({ status: 200, json: () => [{ name: '1' }, { name: '2' }] })
+      }
+    }
 
     wrapper.vm.loadMemes()
     await flushPromises()
@@ -72,10 +91,40 @@ describe('Board.vue', () => {
       log: jest.fn()
     }
 
-    axios.get.mockImplementation(() => Promise.reject(Error('teste')))
+    axios.get.mockImplementation((uri) => {
+      if (uri === 'http://localhost:3000/board/bebulls?period=week') {
+        return Promise.reject(Error('teste'))
+      }
+    })
 
     wrapper.vm.loadBoard()
     await flushPromises()
     expect(global.console.log).toBeCalled()
   })
+
+  it('should find color of meme', async () => {
+    global.fetch = (uri) => {
+      if (uri === 'private/bebulls/memes.json') {
+        return Promise.resolve({ status: 200, json: () => 
+          [{ 
+            title: 'Meme 1',
+            image: "meme1.png",
+            color: "color-1"
+          },
+          { 
+            title: 'Meme 2',
+            image: "meme2.png",
+            color: "color-2"
+          }]
+       })
+      }
+    }
+
+    wrapper.vm.loadMemes()
+    await flushPromises()
+    expect(wrapper.vm.getColor('meme1.png')).toBe('color-1')
+    expect(wrapper.vm.getColor('meme2.png')).toBe('color-2')
+  })
+
+
 })

@@ -9,9 +9,7 @@ jobs:
       - checkout
 
       - restore_cache:
-          keys:
-            - dependencies-cache-{{ checksum "package.json" }}
-            - dependencies-cache
+          key: dependencies-cache-{{ checksum "package.json" }}
 
       - run:
           name: Dependencies install
@@ -28,9 +26,6 @@ jobs:
       - run:
           name: build
           command: yarn build
-
-      - store_artifacts:
-          path: coverage
 
       - save_cache:
           paths:
@@ -84,6 +79,24 @@ jobs:
           name: sonarcloud
           command: yarn sonar-scanner -Dsonar.projectKey=kudomundo-frontend -Dsonar.organization=db1global -Dsonar.sources=./src -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=5e0469dead75c747b45b127591547db60e04d9aa
 
+  mutators:
+    docker:
+      - image: circleci/node:10.16.3
+    working_directory: ~/kudomundo-frontend
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: dependencies-cache-{{ checksum "package.json" }}
+
+      - restore_cache:
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+
+      - run:
+          name: Test Mutators
+          command: yarn test:mutators
+
 workflows:
   version: 2
   build-and-deploy:
@@ -96,6 +109,12 @@ workflows:
             branches:
               only: master
       - sonar:
+          requires:
+            - deploy
+          filters:
+            branches:
+              only: master
+      - mutators:
           requires:
             - deploy
           filters:

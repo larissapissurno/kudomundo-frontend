@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="green-seal">
-        <i></i>
+        <i aria-hidden=true></i>
         <label>{{sustainable.papers}} folhas A4 preservadas</label>
     </div>
   </div>

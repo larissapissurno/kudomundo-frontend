@@ -6,7 +6,7 @@
       <div class="content">
           <img :src="`private/${team}/memes/${card.meme}`" class="meme" alt="imagem da figurinha do card">
           <div class="member">
-              <b>{{card.member}},</b>
+              <strong>{{card.member}},</strong>
           </div>
           <div class="message">
               {{card.description}}

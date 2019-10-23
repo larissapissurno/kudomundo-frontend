@@ -3,5 +3,6 @@ node_modules/
 dist/
 coverage/
 .scannerwork/
+reports/
 
 yarn-error.log
