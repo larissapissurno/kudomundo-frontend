@@ -68,7 +68,7 @@ export default {
 
 .title {
     background-color: var(--header-color);
-    font-size: 18pt;
+    font-size: 17pt;
     font-weight: bold;
     text-transform: uppercase;
     color: #fff;
