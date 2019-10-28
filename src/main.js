@@ -8,7 +8,12 @@ import VueToastr from 'vue-toastr'
 import Loading from 'vue-loading-overlay'
 // eslint-disable-next-line
 import 'vue-loading-overlay/dist/vue-loading.css'
-import { importCustomCss } from './tenant'
+import { importCustomCss, team } from './tenant'
+
+// TODO: remover
+if (team === 'bebulls') {
+  window.location = 'https://teamzao.kudomundo.ml';
+}
 
 Vue.config.productionTip = false
 const clientId = '026d3962-dfa5-4720-a65f-2c62d1edd4a8'
