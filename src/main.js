@@ -11,14 +11,12 @@ import 'vue-loading-overlay/dist/vue-loading.css'
 import { importCustomCss, team, dsv } from './tenant'
 
 if (window.location.host.endsWith('.ml')) {
-  window.location = 'https://' + window.location.host.replace('.ml', '.com.br');
-  return;
+  window.location = 'https://' + window.location.host.replace('.ml', '.com.br')
 }
 
 // TODO: remover
 if (!dsv && team === 'bebulls') {
-  window.location = 'https://teamzao.kudomundo.ml';
-  return;
+  window.location = 'https://teamzao.kudomundo.ml'
 }
 
 Vue.config.productionTip = false
