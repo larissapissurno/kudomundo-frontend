@@ -8,11 +8,17 @@ import VueToastr from 'vue-toastr'
 import Loading from 'vue-loading-overlay'
 // eslint-disable-next-line
 import 'vue-loading-overlay/dist/vue-loading.css'
-import { importCustomCss, team } from './tenant'
+import { importCustomCss, team, dsv } from './tenant'
+
+if (window.location.host.endsWith('.ml')) {
+  window.location = 'https://' + window.location.host.replace('.ml', '.com.br');
+  return;
+}
 
 // TODO: remover
-if (team === 'bebulls') {
+if (!dsv && team === 'bebulls') {
   window.location = 'https://teamzao.kudomundo.ml';
+  return;
 }
 
 Vue.config.productionTip = false
