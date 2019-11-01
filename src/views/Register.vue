@@ -74,7 +74,7 @@
 
 <script>
 import axios from 'axios'
-import { team, uri } from '../tenant'
+import { team, uri, dsv } from '../tenant'
 import Card from '../components/Card'
 
 const md5sum = require('md5')
@@ -159,6 +159,9 @@ export default {
     }
   },
   created () {
+    /* istanbul ignore next */ 
+    !dsv && require('../vendor/survey')
+
     this.loadJson('memes')
     this.loadJson('members')
   }
