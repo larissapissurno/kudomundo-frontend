@@ -159,7 +159,7 @@ export default {
     }
   },
   created () {
-    /* istanbul ignore next */ 
+    /* istanbul ignore next */
     !dsv && require('../vendor/survey')
 
     this.loadJson('memes')

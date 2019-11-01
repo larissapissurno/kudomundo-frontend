@@ -59,7 +59,7 @@ jobs:
 
       - run:
           name: CloudFront invalidate
-          command: aws cloudfront create-invalidation --distribution-id E1P85XYM3ZIMR5 --paths "/*"
+          command: aws cloudfront create-invalidation --distribution-id E3APZ4FVOPLYWN --paths "/*"
 
   sonar:
     docker:
