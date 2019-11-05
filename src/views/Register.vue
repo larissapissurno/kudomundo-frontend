@@ -40,7 +40,7 @@
               <div v-if="aba === 2">
                   <label class="question-label">Escolha!</label>
                   <div class="question">
-                      <div v-for="(meme, index) in memes" :key="index" class="meme" @click="setMeme(meme)">
+                      <div v-for="(meme, index) in filteredMemes()" :key="index" class="meme" @click="setMeme(meme)">
                           <img :src="`private/${team}/memes/${meme.image}`" alt="imagem da figurinha">
                           <label :class="meme.color">{{ meme.title }}</label>
                       </div>
@@ -74,7 +74,7 @@
 
 <script>
 import axios from 'axios'
-import { team, uri, dsv } from '../tenant'
+import { team, uri } from '../tenant'
 import Card from '../components/Card'
 
 const md5sum = require('md5')
@@ -155,13 +155,16 @@ export default {
       }
     },
     filteredMembers () {
-      return this.$data.members.filter(member => member.email !== this.$adal.user.profile.unique_name)
+      return this.$data
+        .members.filter(member => member.email !== this.$adal.user.profile.unique_name)
+    },
+    filteredMemes () {
+      return this.$data
+        .memes
+        .filter(meme => !meme.inactive)
     }
   },
   created () {
-    /* istanbul ignore next */
-    !dsv && require('../vendor/survey')
-
     this.loadJson('memes')
     this.loadJson('members')
   }

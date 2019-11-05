@@ -52,6 +52,11 @@ describe('Register.vue', () => {
           title: 'Passando pra dizer:',
           image: 'passando_pra_dizer.png',
           color: 'color-2'
+        }, {
+          title: 'Meme intativo:',
+          image: 'inativo.png',
+          color: 'color-2',
+          inactive: true
         }]
       }
 
@@ -68,11 +73,13 @@ describe('Register.vue', () => {
     expect(wrapper.name()).toBe('Register')
     expect(wrapper.text()).toBeTruthy()
     await flushPromises()
-    expect(wrapper.vm.$data.memes.length).toBe(1)
+    expect(wrapper.vm.$data.memes.length).toBe(2)
+    expect(wrapper.vm.filteredMemes().length).toBe(1)
     expect(wrapper.vm.$data.members.length).toBe(2)
     expect(wrapper.vm.$data.description).toBe('')
     expect(wrapper.vm.$data.member).toBe('')
     expect(wrapper.vm.$data.titles).toEqual(titles)
+    expect(wrapper.vm.filteredMemes()[0].inactive).toBeFalsy()
   })
 
   it('renders component when fetch members', async () => {
